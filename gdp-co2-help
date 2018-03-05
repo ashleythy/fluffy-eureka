@@ -1,0 +1,21 @@
+#Long way of coding for all years 1980-2017
+
+yr1990 <- gdp_co2_popt %>%
+  filter(gdp_co2_popt$Year==1990) %>%
+  mutate(GDPpercap_Quantiles = cut(GDP_percapita, breaks = quantile
+                                   (GDP_percapita, c(0,.2,.4,.6,.8,1)),
+                                   include.lowest=TRUE)) %>%
+  mutate(CO2_Quantiles = cut(CO2, breaks=quantile(CO2, c(0,.2,.4,.6,.8,1)),
+                             include.lowest = TRUE))
+                             
+#OR     
+#Shorter way of coding by combining all years without having to separate and repeat them as the first option as above. But this combines 
+all years as opposed to calculating them based on inidividual years
+
+yr1991 <- gdp_co2_popt %>%
+  filter(gdp_co2_popt$Year==c(1991,1992,1993)) %>%
+  mutate(GDPpercap_Quantiles = cut(GDP_percapita, breaks = quantile
+                                   (GDP_percapita, c(0,.2,.4,.6,.8,1)),
+                                   include.lowest=TRUE)) %>%
+  mutate(CO2_Quantiles = cut(CO2, breaks=quantile(CO2, c(0,.2,.4,.6,.8,1)),
+                             include.lowest = TRUE))
